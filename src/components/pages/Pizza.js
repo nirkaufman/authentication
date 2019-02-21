@@ -1,6 +1,6 @@
 import React from 'react';
 import {PageContainer} from "../shared/Layout";
-import {useResource} from "../../hooks/use-resource";
+import {useResource} from "../../hooks/useResource";
 import PlaceCard from "../shared/PlaceCard";
 import {StyledLink} from "../shared/StyledLink";
 

@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from '@emotion/styled';
 import {StyledLink} from "./StyledLink";
-import {useAuth} from "../../hooks/use-auth";
+import {useAuth} from "../../hooks/useAuth";
 
 const Header = () => {
   const {logOut} = useAuth();

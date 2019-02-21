@@ -1,6 +1,6 @@
 import React, {useReducer} from 'react';
 import {FormContainer, PageContainer} from "../shared/Layout";
-import {useAuth} from "../../hooks/use-auth";
+import {useAuth} from "../../hooks/useAuth";
 import {StyledLink} from "../shared/StyledLink";
 
 const registerReducer = (newUser, action) => {

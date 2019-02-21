@@ -2,7 +2,7 @@ import React, {useState, useEffect} from "react";
 import {apiRequest} from "../../services/api";
 
 export const AuthContext = React.createContext();
-export const LOCAL_STORAGE_KEY = "USER::TOKENS";
+export const LOCAL_STORAGE_KEY = `${process.env.REACT_APP_STORAGE_KEY}`;
 
 const Auth = ({children}) => {
   const [initialLoading, setInitialLoading] = useState(true);
@@ -20,7 +20,7 @@ const Auth = ({children}) => {
     try {
       const response = await apiRequest({path: "/auth/validate_token"});
 
-      if ("success" in response && response.success) {
+      if (response.status === 200) {
         setCurrentUser(response.data);
       }
     } catch (e) {

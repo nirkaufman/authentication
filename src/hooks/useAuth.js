@@ -18,11 +18,12 @@ export function useAuth() {
       data: {email, password}
     });
 
-    if (response.status && response.status !== 200) {
-      return setErrors(response.data.errors);
+    if (response.status !== 200) {
+      setErrors(response.data.errors);
+    } else {
+      setCurrentUser(response.data.data);
     }
 
-    return setCurrentUser(response.data);
   };
 
   const register = async ({name, email, password}) => {
@@ -32,7 +33,7 @@ export function useAuth() {
       data: {name, email, password}
     });
 
-    setCurrentUser(response.data);
+    setCurrentUser(response.data.data);
   };
 
   const logOut = async () => {

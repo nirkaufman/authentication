@@ -6,7 +6,7 @@ export function useResource({ path }) {
 
   const getResponse = async () => {
     const apiResponse = await apiRequest({ path: "/" + path });
-    setResource(apiResponse);
+    setResource(apiResponse.data);
   };
 
   useEffect(() => {

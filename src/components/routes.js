@@ -3,13 +3,13 @@ import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Burgers from "./pages/Burgers";
-import Auth from "./shared/Auth";
-import {Redirect, Route, Switch} from "react-router-dom";
 import Header from "./shared/Header";
 import Pizza from "./pages/Pizza";
+import {Redirect, Route, Switch} from "react-router-dom";
 
-const authRedirect = currentUser => {
+const routes = currentUser => {
 
+  // pages that advisable without login
   if (!currentUser) {
     return (
           <Switch>
@@ -21,6 +21,7 @@ const authRedirect = currentUser => {
     );
   }
 
+  // pages that required login
   return (
       <>
         <Header/>
@@ -33,8 +34,5 @@ const authRedirect = currentUser => {
   );
 };
 
-const App = () => {
-  return <Auth>{authRedirect}</Auth>;
-};
 
-export default App;
+export default routes;

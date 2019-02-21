@@ -1,8 +1,8 @@
 import axios from "axios";
-import {LOCAL_STORAGE_KEY} from "../components/shared/Auth";
 
 // grab the api url from env variables
 const API_URL = `${process.env.REACT_APP_API_URL}`;
+const LOCAL_STORAGE_KEY = `${process.env.REACT_APP_STORAGE_KEY}`
 
 // we communicate with JSON
 const DEFAULT_HEADERS = {
@@ -66,7 +66,7 @@ export const apiRequest = async ({ path, method = "GET", data, headers = {} }) =
       headers: Object.assign({}, DEFAULT_HEADERS, headers)
     });
 
-    return response.data;
+    return response;
   } catch (error) {
     return error;
   }

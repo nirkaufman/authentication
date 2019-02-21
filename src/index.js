@@ -1,12 +1,16 @@
 import 'milligram/dist/milligram.css';
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './components/App';
 import {BrowserRouter} from 'react-router-dom';
+import Auth from "./components/shared/Auth";
+import routes from './components/routes';
+
 
 
 ReactDOM.render(
     <BrowserRouter>
-        <App />
+      <Auth>
+        {routes}
+      </Auth>
     </BrowserRouter>,
     document.getElementById('root'));
