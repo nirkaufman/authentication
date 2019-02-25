@@ -1,12 +1,19 @@
-import React, {useState} from 'react';
+import React, {useState, useContext} from 'react';
 import {FormContainer, PageContainer} from "../shared/Layout";
 import {StyledLink} from "../shared/StyledLink";
-import {useAuth} from "../../hooks/useAuth";
+import {AuthContext} from '../shared/Auth';
+import {signIn} from '../../services/auth';
+
 
 const Login = () => {
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
-  const {signIn} = useAuth();
+  const {setCurrentUser} = useContext(AuthContext);
+
+  const login = async () => {
+    const response = await signIn({ email, password });
+    return setCurrentUser(response.data.data);
+  };
 
   return (
       <PageContainer>
@@ -21,7 +28,7 @@ const Login = () => {
                  onChange={({target}) => setPassword(target.value)}/>
 
 
-          <button onClick={() => signIn({email, password})}>Login</button>
+          <button onClick={login}>Login</button>
           <p>don't have an account? <StyledLink to={'/register'}>Register</StyledLink></p>
         </FormContainer>
       </PageContainer>

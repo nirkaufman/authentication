@@ -1,30 +1,18 @@
-import React, {useReducer} from 'react';
+import React, {useContext} from 'react';
 import {FormContainer, PageContainer} from "../shared/Layout";
-import {useAuth} from "../../hooks/useAuth";
-import {StyledLink} from "../shared/StyledLink";
+import {signUp} from '../../services/auth';
 
-const registerReducer = (newUser, action) => {
-  switch (action.type) {
-    case "SET":
-      return {...newUser, [action.field]: action.payload};
-    case "RESET":
-      return {};
-    default:
-      return newUser;
-  }
-};
+import {StyledLink} from "../shared/StyledLink";
+import {AuthContext} from "../shared/Auth";
+import {useForm} from '../../hooks/useForm';
 
 const Register = () => {
-  const {register} = useAuth();
-  const [newUser, dispatch] = useReducer(registerReducer, {});
+  const { formData, updateField } = useForm();
+  const {setCurrentUser} = useContext(AuthContext);
 
-  const setField = ({target}) => {
-
-    dispatch({
-      type: "SET",
-      field: target.name,
-      payload: target.value
-    });
+  const register = async () => {
+    const response = await signUp(formData);
+    setCurrentUser(response.data.data);
   };
 
   return (
@@ -34,19 +22,19 @@ const Register = () => {
           <input type="text"
                  placeholder={"Your full name..."}
                  name="name"
-                 onChange={setField}
+                 onChange={updateField}
           />
           <input type="text"
                  placeholder={"Your email..."}
                  name="email"
-                 onChange={setField}
+                 onChange={updateField}
           />
           <input type="password"
                  placeholder={"Your password..."}
                  name="password"
-                 onChange={setField}
+                 onChange={updateField}
           />
-          <button onClick={() => register(newUser)}>Register</button>
+          <button onClick={register}>Register</button>
           <p>Have an account?<StyledLink to={"/login"}>login</StyledLink></p>
         </FormContainer>
       </PageContainer>

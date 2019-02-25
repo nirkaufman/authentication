@@ -1,16 +1,21 @@
-import React from 'react';
+import React, {useContext} from 'react';
+import {signOut} from '../../services/auth';
 import styled from '@emotion/styled';
 import {StyledLink} from "./StyledLink";
-import {useAuth} from "../../hooks/useAuth";
+import {AuthContext} from "./Auth";
 
 const Header = () => {
-  const {logOut} = useAuth();
-  const {user} = useAuth();
+  const {user, setCurrentUser} = useContext(AuthContext);
+
+  const logout = async () => {
+    await signOut();
+    setCurrentUser(null);
+  };
 
   return (
       <HeaderContainer>
         <div>Burger & Pizza Places for <UserName>{user.name}</UserName></div>
-        <StyledLink to={'/'} onClick={logOut}>Logout</StyledLink>
+        <StyledLink to={'/'} onClick={logout}>Logout</StyledLink>
       </HeaderContainer>
   );
 };

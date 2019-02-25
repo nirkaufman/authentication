@@ -8,11 +8,13 @@ const Pizza = () => {
   const pizza = useResource({path: 'pizza'});
 
   return (
-        <PageContainer>
+      <PageContainer>
+        <div>
           <h1>Pizza Places</h1>
           <StyledLink to={"/burger"}>I want burger</StyledLink>
-          {pizza.map(place => <PlaceCard key={place.id} place={place}/>)}
-        </PageContainer>
+        </div>
+        {pizza.map(place => <PlaceCard key={place.id} place={place}/>)}
+      </PageContainer>
   );
 };
 

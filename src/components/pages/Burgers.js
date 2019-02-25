@@ -9,8 +9,10 @@ const Burgers = () => {
 
   return (
         <PageContainer>
+          <div>
           <h1>Burger Places</h1>
           <StyledLink to={"/pizza"}>I want pizza</StyledLink>
+            </div>
           {burgers.map(place => <PlaceCard key={place.id} place={place}/>)}
         </PageContainer>
   );

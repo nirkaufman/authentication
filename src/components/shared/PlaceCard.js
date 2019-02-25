@@ -14,7 +14,7 @@ const PlaceCard = ({place}) => {
 
 const CardContainer = styled.div`
   display: inline-block;
-  width: 400px;
+  width: 400px;  
   border: 1px solid lightpink;
   padding:10px;
   margin: 10px;

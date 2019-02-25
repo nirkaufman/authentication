@@ -21,7 +21,7 @@ const Auth = ({children}) => {
       const response = await apiRequest({path: "/auth/validate_token"});
 
       if (response.status === 200) {
-        setCurrentUser(response.data);
+        setCurrentUser(response.data.data);
       }
     } catch (e) {
       console.error(e);
